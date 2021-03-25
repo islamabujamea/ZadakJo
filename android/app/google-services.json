@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "829172158623",
+    "project_id": "zadak-3f7c3",
+    "storage_bucket": "zadak-3f7c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829172158623:android:ab46811ce627ac3df1d2aa",
+        "android_client_info": {
+          "package_name": "com.zadak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829172158623-i3manhvhmlcqla7fqa48m99rv00jf6oq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpx2j5IknplMBOw-tL5lfucvxI87ke2AM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829172158623-i3manhvhmlcqla7fqa48m99rv00jf6oq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "829172158623-gm4u9uvolt3enocpu8hcetvfg6agn1tk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.zadak"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
