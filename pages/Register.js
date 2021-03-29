@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { StatusBar, View, Image, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { StatusBar, View, Image, Text, TouchableOpacity, TextInput, ScrollView, ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { orangeLight, gray, white } from '../assets/colors/index'
+import { orangeLight, gray, orangeDark } from '../assets/colors/index'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderBox from './components/LoaderBox';
-import RadioButtonRN from 'radio-buttons-react-native';
+import { width } from './AboutUs';
 
 
 var config = require('./Config.js');
@@ -16,6 +16,7 @@ export default class Register extends Component {
             showProgress: false,
             username: '',
             password: '',
+            password2: '',
             email: '',
             phone: '',
             errorTxt: ''
@@ -28,10 +29,18 @@ export default class Register extends Component {
         }
     }
     async Register() {
-        if (this.state.username != '' && this.state.password != '' && (this.state.phone != '' || this.state.email != '')) {
-            this.setState({
-                errorTxt: '', showProgress: true
-            })
+        if (this.state.username != '' && (this.state.phone != '' || this.state.email != '')) {
+            if (this.state.password == this.state.password2 && this.state.password != '' && this.state.password2 != '') {
+
+                this.setState({
+                    errorTxt: '', showProgress: true
+                })
+            } else {
+                this.setState({
+                    errorTxt: strings.passErr
+
+                })
+            }
         } else {
             this.setState({
                 errorTxt: strings.fill
@@ -40,78 +49,99 @@ export default class Register extends Component {
     }
 
     render() {
-        const data = [
-            {
-                label: strings.email
-            },
-            {
-                label: strings.mobileNumber
-            }
-        ];
         return (
-            <View style={{ justifyContent: "center", }}>
-                <StatusBar backgroundColor={white} />
-                {this.renderLoading()}
-                <LinearGradient
-                    colors={[white, orangeLight]}
-                    style={styles.linearGradient}
-                >
-                    <ScrollView>
-                        <Image source={require('../images/reg.png')} style={styles.loginImg} />
-                        <Text style={styles.errorTxt}>{this.state.errorTxt}</Text>
-                        <View style={styles.loginView}>
-                            <TextInput
-                                placeholder={strings.fullName}
-                                style={styles.loginInput}
-                                placeholderTextColor={gray}
-                                onChangeText={text => this.setState({ username: text })}
-                                defaultValue={this.state.username}
-                                returnKeyType='next'
-                                autoCompleteType='username'
-                            />
-                        </View>
-
-                        <RadioButtonRN
-                            data={data}
-                            initial={1}
-                            selectedBtn={(e) => console.log(e)}
-                            animationTypes={['pulse', 'rotate']}
-                            box={false}
-                            style={{ paddingHorizontal: 50, padding: 5 }}
-                            textStyle={styles.loginInput}
-                        />
-
-                        <View style={styles.loginView}>
-                            <TextInput
-                                placeholder={strings.Password}
-                                style={styles.loginInput}
-                                placeholderTextColor={gray}
-                                onChangeText={text => this.setState({ password: text })}
-                                defaultValue={this.state.password}
-                                returnKeyType='go'
-                                autoCompleteType='password'
-                                secureTextEntry={true}
-                            />
-                        </View>
-                        <TouchableOpacity onPress={() => this.Register()}>
-                            <View style={styles.loginView2}>
-                                <Text style={styles.loginInput}>
-                                    {strings.Register}
-                                </Text>
+            <View style={styles.container}>
+                <StatusBar hidden />
+                <ImageBackground source={require('../images/login.png')} style={styles.image}>
+                    <View style={{ flex: 1, backgroundColor: "#000000a0" }}>
+                        <ScrollView>
+                            <Image source={require('../images/logo.png')} style={{ alignSelf: 'center', marginVertical: 20 }} />
+                            <Text style={styles.loginTxt2} > {strings.Register}</Text>
+                            <Text style={styles.errorTxt}>{this.state.errorTxt}</Text>
+                            <View style={styles.loginView}>
+                                <Image source={require('../images/user.png')} style={{ marginHorizontal: 10 }} />
+                                <TextInput
+                                    placeholder={strings.username}
+                                    style={styles.loginInput}
+                                    placeholderTextColor={gray}
+                                    onChangeText={text => this.setState({ username: text })}
+                                    defaultValue={this.state.username}
+                                    returnKeyType='next'
+                                    autoCompleteType='username'
+                                    keyboardType='name-phone-pad'
+                                />
                             </View>
-                        </TouchableOpacity>
+                            <View style={styles.loginView}>
+                                <Image source={require('../images/EMAIL.png')} style={{ marginHorizontal: 10 }} />
+                                <TextInput
+                                    placeholder={strings.email}
+                                    style={styles.loginInput}
+                                    placeholderTextColor={gray}
+                                    onChangeText={text => this.setState({ email: text })}
+                                    defaultValue={this.state.email}
+                                    returnKeyType='next'
+                                    autoCompleteType='email'
+                                    keyboardType='email-address'
+                                />
+                            </View>
+                            <View style={styles.loginView}>
+                                <Image source={require('../images/phone.png')} style={{ marginHorizontal: 10 }} />
+                                <TextInput
+                                    placeholder={strings.mobileNumber}
+                                    style={styles.loginInput}
+                                    placeholderTextColor={gray}
+                                    onChangeText={text => this.setState({ phone: text })}
+                                    defaultValue={this.state.phone}
+                                    returnKeyType='next'
+                                    autoCompleteType='tel'
+                                    keyboardType='phone-pad'
+                                />
+                            </View>
 
-                    </ScrollView>
-                </LinearGradient>
+                            <View style={styles.loginView}>
+                                <Image source={require('../images/pass.png')} style={{ marginHorizontal: 10 }} />
+                                <TextInput
+                                    placeholder={strings.Password}
+                                    style={styles.loginInput}
+                                    placeholderTextColor={gray}
+                                    onChangeText={text => this.setState({ password: text })}
+                                    defaultValue={this.state.password}
+                                    returnKeyType='go'
+                                    autoCompleteType='password'
+                                    secureTextEntry={true}
+                                />
+                            </View>
 
-
+                            <View style={styles.loginView}>
+                                <Image source={require('../images/pass.png')} style={{ marginHorizontal: 10 }} />
+                                <TextInput
+                                    placeholder={strings.Password2}
+                                    style={styles.loginInput}
+                                    placeholderTextColor={gray}
+                                    onChangeText={text => this.setState({ password2: text })}
+                                    defaultValue={this.state.password2}
+                                    returnKeyType='go'
+                                    autoCompleteType='password'
+                                    secureTextEntry={true}
+                                />
+                            </View>
+                            <TouchableOpacity onPress={() => this.Register()}>
+                                <LinearGradient
+                                    colors={[orangeLight, orangeDark]}
+                                    style={{ width: width * 0.8, borderRadius: 5, alignSelf: 'center', marginVertical: 15 }}
+                                >
+                                    <Text style={styles.sliderTxt}>
+                                        {strings.Register}
+                                    </Text>
+                                </LinearGradient>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                                <Text style={styles.sliderTxt}>{strings.logTxt}</Text>
+                            </TouchableOpacity>
+                        </ScrollView>
+                    </View>
+                </ImageBackground>
             </View>
-
-
-
-
-
-
         );
     }
 }

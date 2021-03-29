@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StatusBar, View } from 'react-native';
+import { StatusBar, View, Image, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNRestart from 'react-native-restart';
-import { white } from '../assets/colors/index.js';
+import { blue } from '../assets/colors/index.js';
+export const { width, height } = Dimensions.get('window');
 
 
 var config = require('./Config.js');
@@ -39,8 +40,9 @@ export default class SplashScreen extends Component {
   render() {
     return (
       <View>
-        <StatusBar backgroundColor={white} barStyle='dark-content' />
-
+        <StatusBar hidden />
+        <Image source={require('../images/splash.png')} style={{ height: height, width: width }} />
+        <Image source={require('../images/splash-logo.png')} style={{ position: 'absolute', alignSelf: 'center', marginVertical: width * 0.4 }} />
       </View>
     );
   }

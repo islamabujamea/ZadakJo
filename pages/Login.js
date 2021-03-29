@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StatusBar, View, Image, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { StatusBar, View, Image, Text, TouchableOpacity, TextInput, ImageBackground } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { orangeLight, gray, white, orangeDark } from '../assets/colors/index'
+import { orangeLight, gray, orangeDark } from '../assets/colors/index'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderBox from './components/LoaderBox';
+import { width } from './AboutUs';
 
 
 var config = require('./Config.js');
@@ -38,18 +39,16 @@ export default class Login extends Component {
 
     render() {
         return (
-            <View style={{ justifyContent: "center", }}>
-                <StatusBar backgroundColor={orangeDark} />
-                {this.renderLoading()}
-                <LinearGradient
-                    colors={[orangeDark, orangeLight]}
-                    style={styles.linearGradient}
-                >
-                    <ScrollView>
-                        {/* <Image source={require('../images/login.png')} style={styles.loginImg} /> */}
-                        <Text style={styles.loginTxt}>{strings.login}</Text>
+            <View style={styles.container}>
+                <StatusBar hidden />
+                <ImageBackground source={require('../images/login.png')} style={styles.image}>
+                    <View style={{ flex: 1, backgroundColor: "#000000a0" }}>
+                        <Image source={require('../images/logo.png')} style={styles.logoImg} />
+                        <Text style={styles.loginTxt2} > {strings.loginTxt}</Text>
+                        <Text style={styles.sliderTxt} > {strings.login}</Text>
                         <Text style={styles.errorTxt}>{this.state.errorTxt}</Text>
                         <View style={styles.loginView}>
+                            <Image source={require('../images/user.png')} style={{ marginHorizontal: 10 }} />
                             <TextInput
                                 placeholder={strings.email + '/' + strings.mobileNumber}
                                 style={styles.loginInput}
@@ -62,6 +61,7 @@ export default class Login extends Component {
                         </View>
 
                         <View style={styles.loginView}>
+                            <Image source={require('../images/pass.png')} style={{ marginHorizontal: 10 }} />
                             <TextInput
                                 placeholder={strings.Password}
                                 style={styles.loginInput}
@@ -73,29 +73,29 @@ export default class Login extends Component {
                                 secureTextEntry={true}
                             />
                         </View>
-                        <TouchableOpacity onPress={() => this.Login()}>
-                            <View style={styles.loginView2}>
-                                <Text style={styles.loginInput}>
-                                    {strings.loginTxt}
-                                </Text>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Forget')}>
+                            <View style={styles.forgetView}>
+                                <Text style={styles.forget}> {strings.forget + " ?"}</Text>
                             </View>
                         </TouchableOpacity>
-
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
-                            <Text style={styles.loginTxt2}>{strings.regTxt}</Text>
+                        <TouchableOpacity onPress={() => this.Login()}>
+                            <LinearGradient
+                                colors={[orangeLight, orangeDark]}
+                                style={{ width: width * 0.8, borderRadius: 5, alignSelf: 'center' }}
+                            >
+                                <Text style={styles.sliderTxt}>
+                                    {strings.loginTxt}
+                                </Text>
+                            </LinearGradient>
                         </TouchableOpacity>
-                    </ScrollView>
-                </LinearGradient>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
+                            <Text style={styles.sliderTxt}>{strings.regTxt}</Text>
+                        </TouchableOpacity>
+                    </View>
 
-
+                </ImageBackground>
             </View>
-
-
-
-
-
 
         );
     }
 }
-

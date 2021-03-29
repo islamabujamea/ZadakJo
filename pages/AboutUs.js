@@ -17,12 +17,12 @@ export default class AboutUs extends Component {
       headerStyle: styles.headerStyle,
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <Image source={require('./images/menu.png')} style={styles.headerIcons} />
+          {/* <Image source={require('./images/menu.png')} style={styles.headerIcons} /> */}
         </TouchableOpacity>
       ),
       headerRight: () => (
         <TouchableOpacity>
-          <Image source={require('./images/menu.png')} style={[styles.headerIcons, { tintColor: blue, backgroundColor: blue }]} />
+          {/* <Image source={require('./images/menu.png')} style={[styles.headerIcons, { tintColor: blue, backgroundColor: blue }]} /> */}
         </TouchableOpacity>
       ),
     };
@@ -82,11 +82,11 @@ export default class AboutUs extends Component {
             <View style={styles.AboutUs}>
               <Text style={styles.headerTxt}>{this.state.info.description}</Text>
             </View>
-            <Image
+            {/* <Image
               source={(require('./images/output-onlinepngtools.png'))}
               style={{ width: width * 0.5, height: height * 0.2, alignSelf: 'center' }}
               resizeMode='contain'
-            />
+            /> */}
             <View style={styles.iconView}>
               {this.state.info.fb != null && <TouchableOpacity onPress={() => this.handleClick(this.state.info.fb)}>
                 <Icon type='Entypo' name="facebook" style={styles.socialIcon} />

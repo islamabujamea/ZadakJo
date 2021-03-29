@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { BoldFont } from '../../assets/fonts/index';
-import { orangeDark, white, black } from '../../assets/colors/index'
+import { orangeDark, white, blue, black, gray, orangeLight } from '../../assets/colors/index'
 export const { width, height } = Dimensions.get('window');
 
 
@@ -31,7 +31,7 @@ export default class MainStyle extends Component {
         fontSize: 20,
         fontFamily: BoldFont,
         marginTop: width * 0.3,
-        color: white
+        color: white,
       },
       errorTxt: {
         textAlign: 'center',
@@ -41,18 +41,22 @@ export default class MainStyle extends Component {
       },
       loginTxt2: {
         textAlign: 'center',
-        fontSize: 16,
-        marginTop: width * 0.05,
+        fontSize: 22,
+        marginTop: width * 0.01,
         fontFamily: BoldFont,
         color: white
       },
       loginInput: {
-        textAlign: 'center',
         fontSize: 16,
         fontFamily: BoldFont,
+        textAlign: 'center'
+
+
       },
       loginView: {
-        marginTop: width * 0.05,
+        marginTop: 20,
+
+        alignItems: 'center',
         ...Platform.select({
           ios: {
             shadowColor: black,
@@ -76,7 +80,8 @@ export default class MainStyle extends Component {
         backgroundColor: '#fff',
         width: width * 0.8,
         alignSelf: 'center',
-        borderRadius: 25
+        borderRadius: 5,
+        flexDirection: 'row',
       },
       loginView2: {
         marginTop: width * 0.1,
@@ -109,13 +114,74 @@ export default class MainStyle extends Component {
         width: width,
         alignSelf: 'center',
         resizeMode: 'contain',
-
-
       },
-
-
-
-
+      sliderImg: {
+        width: width,
+        alignSelf: 'center',
+        flex: 1,
+        resizeMode: 'cover',
+      },
+      indicator: {
+        height: height * 0.78
+      },
+      dotStyle: {
+        backgroundColor: gray,
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+      },
+      selectedDotStyle: {
+        backgroundColor: orangeLight,
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+      },
+      sliderTxt: {
+        padding: 10,
+        color: white,
+        textAlign: 'center',
+        fontFamily: BoldFont,
+        fontSize: 18
+      },
+      headerTxt: {
+        color: white,
+        fontFamily: BoldFont,
+        fontSize: 18
+      },
+      sliderTxt2: {
+        padding: 10,
+        flexDirection: 'row',
+        width: width * 0.9,
+        justifyContent: 'space-between',
+        alignSelf: 'center'
+      }
+      , container: {
+        flex: 1,
+        flexDirection: "column",
+        backgroundColor: white
+      },
+      image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
+      },
+      forget: {
+        fontFamily: BoldFont,
+        textAlign: 'right',
+        paddingVertical: 20,
+        color: white
+      },
+      forgetView: {
+        width: width * 0.8,
+        alignSelf: 'center'
+      },
+      headerStyle: {
+        backgroundColor: blue,
+      },
+      headerIcons: {
+        marginHorizontal: 10
+      },
+      logoImg: { alignSelf: 'center', marginVertical: 20 }
     });
 
 

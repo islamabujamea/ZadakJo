@@ -15,12 +15,12 @@ export default class Home extends Component {
       headerStyle: styles.headerStyle,
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <Image source={require('./images/menu.png')} style={styles.headerIcons} />
+          {/* <Image source={require('./images/menu.png')} style={styles.headerIcons} /> */}
         </TouchableOpacity>
       ),
       headerRight: () => (
         <TouchableOpacity>
-          <Image source={require('./images/menu.png')} style={[styles.headerIcons, { tintColor: blue, backgroundColor: blue }]} />
+          {/* <Image source={require('./images/menu.png')} style={[styles.headerIcons, { tintColor: blue, backgroundColor: blue }]} /> */}
         </TouchableOpacity>
       ),
     };
@@ -46,14 +46,14 @@ export default class Home extends Component {
       <View>
         <StatusBar backgroundColor={blue} barStyle='light-content' />
         {this.renderLoading()}
-        <LinearGradient
+        {/* <LinearGradient
           colors={[orangeLight, orangeDark]}
           style={styles.linearGradient}
         >
           <ScrollView>
 
           </ScrollView>
-        </LinearGradient>
+        </LinearGradient> */}
       </View>
     );
   }

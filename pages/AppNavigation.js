@@ -16,6 +16,10 @@ import SplashScreen from './SplashScreen';
 import ContactUs from './ContactUs';
 import Login from './Login.js';
 import Register from './Register.js';
+import Forget from './Forget.js';
+import Confirm from './Confirm.js';
+import RestPassword from './RestPassword.js'
+import Slider from './Slider.js';
 import { View } from 'react-native';
 
 var IS_RTL = I18nManager.isRTL;
@@ -48,6 +52,30 @@ export default class MainNavigator extends Component {
                 navigationOptions: {
                     headerShown: false,
                 },
+            },
+            Slider: {
+                screen: Slider,
+                navigationOptions: {
+                    headerShown: false
+                }
+            },
+            Forget: {
+                screen: Forget,
+                navigationOptions: {
+                    headerShown: true
+                }
+            },
+            Confirm: {
+                screen: Confirm,
+                navigationOptions: {
+                    headerShown: true
+                }
+            },
+            RestPassword: {
+                screen: RestPassword,
+                navigationOptions: {
+                    headerShown: true
+                }
             },
 
         })

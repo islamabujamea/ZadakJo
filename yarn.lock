@@ -1202,6 +1202,16 @@
   "resolved" "https://registry.npmjs.org/@react-native-community/masked-view/-/masked-view-0.1.10.tgz"
   "version" "0.1.10"
 
+"@react-native-community/viewpager@^3.3.0":
+  "integrity" "sha512-UeCJBS172uCcsiAOLhAOsVjiWsj4YdeM44v0bGik/JXqFoplSmo/SPKFQm5ZQWRjYTckcOL5zkli+WULBwzJgQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/viewpager/-/viewpager-3.3.1.tgz"
+  "version" "3.3.1"
+
+"@react-native-community/viewpager@^5.0.11":
+  "integrity" "sha512-eboJwbDQjP1qJP3LFzVspgh88IGNF07S2qpU296j+4kL0inVuL+HXs81SuczMGtJmDZ4u19RNEBVq79of/h+jQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/viewpager/-/viewpager-5.0.11.tgz"
+  "version" "5.0.11"
+
 "@react-native-picker/picker@^1.9.7":
   "integrity" "sha512-LxtFcuQ/jxsNwH9byM4mMSusqGfaj0LHXTh6fJgvIKOBjAWwV+FjWHszQSPCbnycdezirf8dFLhF9phcNuE8CA=="
   "resolved" "https://registry.npmjs.org/@react-native-picker/picker/-/picker-1.12.0.tgz"
@@ -4978,7 +4988,7 @@
   "resolved" "https://registry.npmjs.org/lodash.throttle/-/lodash.throttle-4.1.1.tgz"
   "version" "4.1.1"
 
-"lodash@^4.17.10", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.19", "lodash@^4.17.20", "lodash@^4.17.21", "lodash@^4.17.5", "lodash@^4.3.0":
+"lodash@^4.17.10", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.19", "lodash@^4.17.20", "lodash@^4.17.21", "lodash@^4.17.4", "lodash@^4.17.5", "lodash@^4.3.0":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
@@ -6239,11 +6249,6 @@
     "split-on-first" "^1.0.0"
     "strict-uri-encode" "^2.0.0"
 
-"radio-buttons-react-native@^1.0.4":
-  "integrity" "sha512-5AKM/p3a9mykQ1BCIbBnHrDwXZZ6iJuDEDFaiNb2Pa2Nx9EgUMgU5owcrU9g9eaK7didA5rJ3yAUKGnyfhBqcw=="
-  "resolved" "https://registry.npmjs.org/radio-buttons-react-native/-/radio-buttons-react-native-1.0.4.tgz"
-  "version" "1.0.4"
-
 "raf@^3.1.0":
   "integrity" "sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA=="
   "resolved" "https://registry.npmjs.org/raf/-/raf-3.4.1.tgz"
@@ -6293,6 +6298,21 @@
   "integrity" "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
+
+"react-native-best-viewpager@^1.0.4":
+  "integrity" "sha512-apkGaaUWK7kGkFyPa403SfMHfyYkanCXQw1xF0+0xIfg0wyXMPZhBQdGHYKzrB9bMOJyMaMYxoh+7ifiZbuiDQ=="
+  "resolved" "https://registry.npmjs.org/react-native-best-viewpager/-/react-native-best-viewpager-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "@react-native-community/viewpager" "^3.3.0"
+
+"react-native-confirmation-code-input@^1.0.4":
+  "integrity" "sha512-WmkDws7lovEC9deYHtinwsLBv4Snem4VjHJOoXe0tNM/cgEKzuNNCOui25QHgB2OFPvcWMAnTHzyCJmEHcbnqA=="
+  "resolved" "https://registry.npmjs.org/react-native-confirmation-code-input/-/react-native-confirmation-code-input-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "lodash" "^4.17.4"
+    "prop-types" "^15.5.10"
 
 "react-native-drawer@2.5.1":
   "integrity" "sha512-cxcQNbSWy5sbGi7anSVp6EDr6JarOBMY9lbFOeLFeVYbONiudoqRKbgEsSDgSw3/LFCLvUXK5zdjXCOedeytxQ=="
@@ -6366,6 +6386,11 @@
   "integrity" "sha512-r5WZLpmx2hHjC1RgMdPq5YpSU9tEhBpUaZ5M1SUtNIONyiLqQVxabhRCINdebIk4depJiIl7yw2Q85zJyeX6fw=="
   "resolved" "https://registry.npmjs.org/react-native-screens/-/react-native-screens-2.18.1.tgz"
   "version" "2.18.1"
+
+"react-native-simple-radio-button@^2.7.4":
+  "integrity" "sha512-QOZNmJUn0ViBGU+at7wAG/uGzd5PfXi0kMHr9lfTCLXknW/f9f2fOVjxjdHvOCdf/zA/eMJBjGjtusSDzQf1+w=="
+  "resolved" "https://registry.npmjs.org/react-native-simple-radio-button/-/react-native-simple-radio-button-2.7.4.tgz"
+  "version" "2.7.4"
 
 "react-native-vector-icons@^7.0.0":
   "integrity" "sha512-V2a1zJ4i+kS8O4j183gIwX14St9AxxXabxwYpFBgRhvr2NDXyFcjHDEAgrOYYlt2W57e20aN1tBDU/I+wn9WtQ=="

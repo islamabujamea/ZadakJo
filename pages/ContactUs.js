@@ -15,12 +15,12 @@ export default class ContactUs extends Component {
       headerStyle: styles.headerStyle,
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <Image source={require('./images/menu.png')} style={styles.headerIcons} />
+          {/* <Image source={require('./images/menu.png')} style={styles.headerIcons} /> */}
         </TouchableOpacity>
       ),
       headerRight: () => (
         <TouchableOpacity>
-          <Image source={require('./images/menu.png')} style={[styles.headerIcons, { tintColor: blue, backgroundColor: blue }]} />
+          {/* <Image source={require('./images/menu.png')} style={[styles.headerIcons, { tintColor: blue, backgroundColor: blue }]} /> */}
         </TouchableOpacity>
       ),
     };
@@ -179,25 +179,25 @@ export default class ContactUs extends Component {
               <TouchableOpacity onPress={() => this.send()}>
                 <View style={styles.button}>
                   <Text style={styles.headerTxt}>{strings.send + "  |"}</Text>
-                  <Image source={require('./images/send.png')} style={styles.send} />
+                  {/* <Image source={require('./images/send.png')} style={styles.send} /> */}
                 </View>
               </TouchableOpacity>
 
 
               {!this.state.showProgress && <View style={styles.info2}>
-                <Image source={require('./images/call.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} />
+                {/* <Image source={require('./images/call.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} /> */}
                 <TouchableOpacity onPress={() => Linking.openURL(`tel:` + this.state.info.phone)}>
                   <Text style={styles.headerTxt2}>{this.state.info.phone}</Text>
                 </TouchableOpacity>
               </View>}
               {!this.state.showProgress && <View style={styles.info2}>
-                <Image source={require('./images/mobile.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} />
+                {/* <Image source={require('./images/mobile.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} /> */}
                 <TouchableOpacity onPress={() => Linking.openURL(`tel:` + this.state.info.mobile)}>
                   <Text style={styles.headerTxt2}>{this.state.info.mobile}</Text>
                 </TouchableOpacity>
               </View>}
               {!this.state.showProgress && <View style={styles.info2}>
-                <Image source={require('./images/msg.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} />
+                {/* <Image source={require('./images/msg.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} /> */}
                 <TouchableOpacity onPress={() => Linking.openURL('mailto:' + this.state.info.email)}>
                   <Text style={styles.headerTxt2}>{this.state.info.email}</Text>
                 </TouchableOpacity>
