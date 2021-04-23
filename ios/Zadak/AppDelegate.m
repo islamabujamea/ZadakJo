@@ -12,7 +12,8 @@
 #import <React/RCTRootView.h>
 
 @implementation AppDelegate
-
+// in AppDelegate.m
+        [[RCTI18nUtil sharedInstance] allowRTL:YES];
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];

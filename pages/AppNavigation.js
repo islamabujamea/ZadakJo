@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { Dimensions, Text, I18nManager, Image } from 'react-native';
+import { Dimensions, Text, I18nManager, } from 'react-native';
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -11,6 +11,7 @@ import { white } from '../assets/colors/index';
 import Strings from './Translation.js';
 import MainStyle from './style/mainStyle';
 import Home from './Home.js';
+import Home2 from './Home2.js';
 import AboutUs from './AboutUs.js';
 import SplashScreen from './SplashScreen';
 import ContactUs from './ContactUs';
@@ -23,7 +24,7 @@ import Slider from './Slider.js';
 import { View } from 'react-native';
 
 var IS_RTL = I18nManager.isRTL;
-
+I18nManager.forceRTL(true);
 export default class MainNavigator extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +36,7 @@ export default class MainNavigator extends Component {
 
 
     render() {
-
+        I18nManager.forceRTL(true);
         strings = IS_RTL ? Strings.ar : Strings.enUS
         lang = IS_RTL ? 'ar' : 'en'
         styles = MainStyle.returnStyles(IS_RTL);
@@ -50,7 +51,7 @@ export default class MainNavigator extends Component {
             Register: {
                 screen: Register,
                 navigationOptions: {
-                    headerShown: false,
+                    headerShown: true,
                 },
             },
             Slider: {
@@ -77,21 +78,27 @@ export default class MainNavigator extends Component {
                     headerShown: true
                 }
             },
+            Home: {
+                screen: Home,
+                navigationOptions: {
+                    headerShown: true
+                }
+            },
 
         })
 
         const DrawerStack = createDrawerNavigator({
-            Home: {
+            Home2: {
                 screen: createStackNavigator({
-                    Home: {
-                        screen: Home,
+                    Home2: {
+                        screen: Home2,
                     },
                 }),
                 navigationOptions: {
                     headerShown: false,
                     headerMode: 'noun',
                     drawerLabel: <View style={styles.drawerItems}>
-                        <Text style={styles.drawerTxt}>{strings.homeTitle}</Text>
+                        <Text style={styles.drawerTxt}>{'الرئيسية'}</Text>
                     </View>,
                 },
             },
@@ -103,7 +110,7 @@ export default class MainNavigator extends Component {
                 }),
                 navigationOptions: {
                     drawerLabel: <View style={styles.drawerItems}>
-                        <Text style={styles.drawerTxt}>{strings.AboutUs}</Text>
+                        <Text style={styles.drawerTxt}>{"من نحن"}</Text>
                     </View>,
                 },
             },
@@ -118,7 +125,7 @@ export default class MainNavigator extends Component {
                     headerShown: false,
                     drawerLabel: <View style={styles.drawerItems}>
                         <Text style={styles.drawerTxt}>
-                            {strings.ContactUs}
+                            {"تواصل معنا"}
                         </Text>
                     </View>,
                 },

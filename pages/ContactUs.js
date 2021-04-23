@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
-import { StatusBar, View, Image, Linking, Text, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
+import { StatusBar, View, Image, Linking, Text, TouchableOpacity, TextInput, ScrollView, Alert, Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { blue, orange, white } from '../assets/colors/index'
 import { Icon } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderBox from './components/LoaderBox';
-
+export const { width: width, height: height } = Dimensions.get('window');
 var config = require('./Config.js');
 
 export default class ContactUs extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: () => <Text style={styles.headerTitle}>{strings.ContactUs}</Text>,
+      headerTitle: () =>
+        <View style={{ width: width * 0.35 }}>
+          <Image source={require('../images/header-logo.png')} style={{ alignSelf: 'flex-end' }} />
+        </View>,
       headerStyle: styles.headerStyle,
-      headerLeft: () => (
+      headerLeft: () =>
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          {/* <Image source={require('./images/menu.png')} style={styles.headerIcons} /> */}
-        </TouchableOpacity>
-      ),
-      headerRight: () => (
-        <TouchableOpacity>
-          {/* <Image source={require('./images/menu.png')} style={[styles.headerIcons, { tintColor: blue, backgroundColor: blue }]} /> */}
-        </TouchableOpacity>
-      ),
+          <View>
+            <Image source={require('../images/menu.png')} style={{ marginHorizontal: 20 }} />
+          </View>
+        </TouchableOpacity>,
     };
   };
   constructor(props) {
@@ -36,20 +35,8 @@ export default class ContactUs extends Component {
       msg: ''
     }
   };
-  async UNSAFE_componentWillMount() {
-    this.getInfo()
-  }
-  async getInfo() {
-    this.setState({ showProgress: true })
-    var lang = await AsyncStorage.getItem('@Rabaana:lang');
-    try {
-      let response = await fetch(config.DOMAIN + lang + '/contact-us');
-      let res = await response.json();
-      this.setState({ showProgress: false, info: res.response });
-    } catch (error) {
-      this.setState({ error: error });
-    }
-  }
+  async UNSAFE_componentWillMount() { }
+
 
   renderLoading() {
     if (this.state.showProgress) {
@@ -66,67 +53,15 @@ export default class ContactUs extends Component {
       }
     });
   };
-  async send() {
+  async send() { }
 
-    var lang = await AsyncStorage.getItem('@Rabaana:lang');
-    if (this.state.name != '' && this.state.msg != '' && this.state.mobile != '') {
-      this.setState({ showProgress: true })
-      try {
-        let response = await fetch(config.DOMAIN + lang + '/contact-us', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            sender_name: this.state.name,
-            mobile: this.state.mobile,
-            email: this.state.email,
-            message: this.state.msg
-          })
-        });
-        let res = await response.json();
-        console.log(res)
-        Alert.alert(
-          '',
-          res.statusCode === 200 ? strings.doneTxt : strings.errorTxt,
-          [
-            {
-              text: strings.cancel,
-              onPress: () => console.log('Cancel Pressed'),
-              style: 'cancel'
-            },
-            { text: strings.ok, onPress: () => this.setState({ name: '', mobile: '', email: '', msg: '' }) }
-          ],
-
-        );
-        this.setState({ showProgress: false, });
-      } catch (error) {
-        this.setState({ error: error });
-      }
-    } else {
-      Alert.alert(
-        '',
-        strings.fill,
-        [
-          {
-            text: strings.cancel,
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel'
-          },
-          { text: strings.ok }
-        ],
-
-      );
-    }
-  }
   render() {
     return (
       <View>
         <StatusBar backgroundColor={blue} barStyle='light-content' />
         {this.renderLoading()}
         <LinearGradient
-          colors={[blue, orange]}
+          colors={[white, white]}
           style={{ height: '100%' }}
         >
           <ScrollView>
@@ -178,48 +113,41 @@ export default class ContactUs extends Component {
 
               <TouchableOpacity onPress={() => this.send()}>
                 <View style={styles.button}>
-                  <Text style={styles.headerTxt}>{strings.send + "  |"}</Text>
-                  {/* <Image source={require('./images/send.png')} style={styles.send} /> */}
+                  <Text style={styles.headerTxt}>{strings.send }</Text>
                 </View>
               </TouchableOpacity>
 
 
-              {!this.state.showProgress && <View style={styles.info2}>
-                {/* <Image source={require('./images/call.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} /> */}
-                <TouchableOpacity onPress={() => Linking.openURL(`tel:` + this.state.info.phone)}>
-                  <Text style={styles.headerTxt2}>{this.state.info.phone}</Text>
+            
+
+              {/* {!this.state.showProgress && <View style={styles.info2}>
+                <TouchableOpacity onPress={() => Linking.openURL(`tel:0776652127`)}>
+                  <Text style={styles.headerTxt2}>{'0776652127'}</Text>
                 </TouchableOpacity>
               </View>}
               {!this.state.showProgress && <View style={styles.info2}>
-                {/* <Image source={require('./images/mobile.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} /> */}
-                <TouchableOpacity onPress={() => Linking.openURL(`tel:` + this.state.info.mobile)}>
-                  <Text style={styles.headerTxt2}>{this.state.info.mobile}</Text>
+                <TouchableOpacity onPress={() => Linking.openURL('mailto:test@test.com')}>
+                  <Text style={styles.headerTxt2}>{'test@test.com'}</Text>
                 </TouchableOpacity>
-              </View>}
-              {!this.state.showProgress && <View style={styles.info2}>
-                {/* <Image source={require('./images/msg.png')} style={[styles.send, { backgroundColor: white, borderRadius: 25 }]} /> */}
-                <TouchableOpacity onPress={() => Linking.openURL('mailto:' + this.state.info.email)}>
-                  <Text style={styles.headerTxt2}>{this.state.info.email}</Text>
-                </TouchableOpacity>
-              </View>}
+              </View>} */}
 
 
               <View style={styles.iconView}>
-                {this.state.info.fb != null && <TouchableOpacity onPress={() => this.handleClick(this.state.info.fb)}>
+                <TouchableOpacity >
                   <Icon type='Entypo' name="facebook" style={styles.socialIcon} />
-                </TouchableOpacity>}
-                {this.state.info.instagram != null && <TouchableOpacity onPress={() => this.handleClick(this.state.info.instagram)} >
+                </TouchableOpacity>
+                 <TouchableOpacity  >
                   <Icon type='Entypo' name="instagram" style={styles.socialIcon} />
-                </TouchableOpacity>}
-                {this.state.info.twitter != null && <TouchableOpacity onPress={() => this.handleClick(this.state.info.twitter)}>
+                </TouchableOpacity>
+                <TouchableOpacity >
                   <Icon type='Entypo' name="twitter" style={styles.socialIcon} />
-                </TouchableOpacity>}
-                {this.state.info.snapchat != null && <TouchableOpacity onPress={() => this.handleClick(this.state.info.snapchat)}>
+                </TouchableOpacity>
+               <TouchableOpacity >
                   <Icon type='Foundation' name="social-snapchat" style={styles.socialIcon} />
-                </TouchableOpacity>}
-                {this.state.info.youtube != null && <TouchableOpacity onPress={() => this.handleClick(this.state.info.youtube)}>
+                </TouchableOpacity>
+                <TouchableOpacity >
                   <Icon type='Entypo' name="youtube" style={styles.socialIcon} />
-                </TouchableOpacity>}
+                </TouchableOpacity>
               </View>
 
             </View>

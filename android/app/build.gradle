@@ -131,8 +131,19 @@ android {
         applicationId "com.zadak"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
+    }
+       signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            }
+        }
     }
     splits {
         abi {
@@ -153,6 +164,8 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -181,10 +194,12 @@ android {
 dependencies {
     implementation project(':@react-native-community_viewpager')
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation "com.google.android.gms:play-services-base:17.0.0"
-    implementation "com.google.firebase:firebase-core:17.0.1"
-    implementation "com.google.firebase:firebase-messaging:19.0.0"
+    implementation "com.facebook.react:react-native:0.20.1"  // From node_modules
+    implementation "com.google.android.gms:play-services-base:17.6.0"
+    implementation 'com.google.firebase:firebase-auth:20.0.4'
+    implementation "com.google.firebase:firebase-core:18.0.3"
+    implementation "com.google.firebase:firebase-messaging:21.1.0"
+    implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.facebook.fresco:animated-gif:2.0.0' 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

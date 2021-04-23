@@ -47,14 +47,43 @@ export default class MainStyle extends Component {
         color: white
       },
       loginInput: {
+        fontSize: 14,
+        fontFamily: BoldFont,
+        textAlign: 'right',
+        width: width * 0.7
+      },
+      input: {
+        height: 50,
+        backgroundColor: white,
+        color: orangeLight,
+        borderRadius: 25,
+        fontFamily: BoldFont,
+        fontSize: 14,
+        paddingHorizontal: 20,
+        marginVertical: 10,
+        borderColor: blue,
+        borderWidth: 1,
+        width: width * 0.9, alignSelf: 'center'
+      },
+      socialIcon: {
+        fontSize: 25,
+        color: blue
+      },
+      iconView: {
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignSelf: 'center',
+        width: width * 0.5,
+        marginVertical: 20
+      },
+      homeTxt: {
         fontSize: 16,
         fontFamily: BoldFont,
-        textAlign: 'center'
-
-
+        textAlign: 'center',
+        padding: 10
       },
       loginView: {
-        marginTop: 20,
+        marginTop: 10,
 
         alignItems: 'center',
         ...Platform.select({
@@ -143,8 +172,30 @@ export default class MainStyle extends Component {
         fontFamily: BoldFont,
         fontSize: 18
       },
+      whiteTxt: {
+        padding: 8,
+        color: white,
+        textAlign: 'center',
+        fontFamily: BoldFont,
+        fontSize: 15
+      },
+      grayxt: {
+        color: gray,
+        fontFamily: BoldFont,
+        fontSize: 18
+      },
+      orangeTxt: {
+        color: '#FC6011',
+        fontFamily: BoldFont,
+        fontSize: 15
+      },
       headerTxt: {
         color: white,
+        fontFamily: BoldFont,
+        fontSize: 18
+      },
+      drawerTxt: {
+        color: blue,
         fontFamily: BoldFont,
         fontSize: 18
       },
@@ -179,9 +230,35 @@ export default class MainStyle extends Component {
         backgroundColor: blue,
       },
       headerIcons: {
-        marginHorizontal: 10
+        marginHorizontal: 10,
       },
-      logoImg: { alignSelf: 'center', marginVertical: 20 }
+      logoImg: { alignSelf: 'center', marginVertical: 20 },
+      drawerItems: {
+        margin: 20
+      },
+      headerTxt2: {
+        color: blue,
+        fontFamily: BoldFont,
+        fontSize: 16,
+        padding: 5
+
+      },
+      info2: {
+        flexDirection: 'row',
+        width: 180,
+        marginVertical: 5
+      },
+      button: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        borderRadius: 15,
+        width: 90,
+        height: 40,
+        padding: 5,
+        backgroundColor: orangeLight,
+        alignItems: 'center',
+        alignSelf: 'center',
+      },
     });
 
 

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { StatusBar, View, Image, Text, TouchableOpacity, TextInput } from 'react-native';
 import { orangeLight, gray, orangeDark, blue } from '../assets/colors/index'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoaderBox from './components/LoaderBox';
 import { width } from './AboutUs';
-import CodeInput from 'react-native-confirmation-code-input';
 
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -36,14 +34,24 @@ export default class Confirm extends Component {
             return <LoaderBox />
         }
     }
-
+    async ResetPass() {
+        if (this.state.password == this.state.password2) {
+            this.props.navigation.navigate('Home')
+        } else {
+            this.setState({
+                errorTxt: 'كلمة المرور غير متطابقة'
+            })
+        }
+    }
 
     render() {
         return (
             <View style={styles.container}>
                 <StatusBar backgroundColor={blue} barStyle='light-content' />
                 <Image source={require('../images/forget.png')} style={styles.logoImg} />
-                <Text style={styles.loginInput}>{strings.newPass}</Text>
+                <Text style={[styles.loginInput, { textAlign: 'center', alignSelf: 'center' }]}>{strings.newPass}</Text>
+                <Text style={styles.errorTxt}>{this.state.errorTxt}</Text>
+
                 <View style={styles.loginView}>
                     <Image source={require('../images/pass.png')} style={{ marginHorizontal: 10 }} />
                     <TextInput
@@ -71,7 +79,7 @@ export default class Confirm extends Component {
                         secureTextEntry={true}
                     />
                 </View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
+                <TouchableOpacity onPress={() => this.ResetPass()}>
                     <LinearGradient
                         colors={[orangeLight, orangeDark]}
                         style={{ marginVertical: 60, width: width * 0.8, borderRadius: 5, alignSelf: 'center' }}

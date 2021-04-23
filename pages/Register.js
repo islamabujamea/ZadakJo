@@ -10,6 +10,17 @@ import { width } from './AboutUs';
 var config = require('./Config.js');
 
 export default class Register extends Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            headerTitle: () => <Text style={styles.headerTxt}>{strings.Register}</Text>,
+            headerStyle: styles.headerStyle,
+            headerLeft: () => (
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Image source={require('../images/ic_arrow_back.png')} style={styles.headerIcons} />
+                </TouchableOpacity>
+            ),
+        };
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -35,6 +46,7 @@ export default class Register extends Component {
                 this.setState({
                     errorTxt: '', showProgress: true
                 })
+                this.props.navigation.navigate('Home')
             } else {
                 this.setState({
                     errorTxt: strings.passErr
@@ -55,7 +67,7 @@ export default class Register extends Component {
                 <ImageBackground source={require('../images/login.png')} style={styles.image}>
                     <View style={{ flex: 1, backgroundColor: "#000000a0" }}>
                         <ScrollView>
-                            <Image source={require('../images/logo.png')} style={{ alignSelf: 'center', marginVertical: 20 }} />
+                            <Image source={require('../images/logo.png')} style={{ alignSelf: 'center', marginVertical: 10, width: 100, height: 100, resizeMode: 'contain' }} />
                             <Text style={styles.loginTxt2} > {strings.Register}</Text>
                             <Text style={styles.errorTxt}>{this.state.errorTxt}</Text>
                             <View style={styles.loginView}>
@@ -128,7 +140,7 @@ export default class Register extends Component {
                             <TouchableOpacity onPress={() => this.Register()}>
                                 <LinearGradient
                                     colors={[orangeLight, orangeDark]}
-                                    style={{ width: width * 0.8, borderRadius: 5, alignSelf: 'center', marginVertical: 15 }}
+                                    style={{ width: width * 0.8, borderRadius: 5, alignSelf: 'center', marginVertical: 7 }}
                                 >
                                     <Text style={styles.sliderTxt}>
                                         {strings.Register}

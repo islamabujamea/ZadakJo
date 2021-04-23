@@ -37,7 +37,20 @@ export default class Confirm extends Component {
         }
     }
     async onFulfill(code) {
-        this.props.navigation.navigate('RestPassword')
+        console.log('cood ..', code)
+        console.log('entered code ..', this.props.navigation.getParam('confirmResult'))
+        this.props.navigation.getParam('confirmResult')
+            .confirm(code)
+            .then(async () => {
+                this.props.navigation.navigate('RestPassword')
+            }).catch(error => {
+                this.setState({
+                    errorTxt: 'يرجى كتابة كود صحيح'
+                })
+                alert(error.message)
+                console.log(error)
+            })
+
     }
 
     render() {
@@ -45,8 +58,9 @@ export default class Confirm extends Component {
             <View style={styles.container}>
                 <StatusBar backgroundColor={blue} barStyle='light-content' />
                 <Image source={require('../images/code.png')} style={styles.logoImg} />
-                <Text style={styles.loginInput}>{strings.code}</Text>
-                <Text style={[styles.loginInput, { color: gray }]}>{strings.codeTxt}</Text>
+                <Text style={[styles.loginInput, { textAlign: 'center', alignSelf: 'center' }]}>{strings.code}</Text>
+                <Text style={[styles.loginInput, { color: gray, textAlign: 'center', alignSelf: 'center' }]}>{strings.codeTxt}</Text>
+                <Text style={styles.errorTxt}>{this.state.errorTxt}</Text>
 
                 <View>
                     <CodeInput
@@ -56,8 +70,8 @@ export default class Confirm extends Component {
                         onFulfill={(code) => this.onFulfill(code)}
                         inactiveColor={gray}
                         activeColor={orangeDark}
-                        codeLength={4}
-                        codeInputStyle={styles.loginInput}
+                        codeLength={6}
+                        // codeInputStyle={styles.loginInput}
                         containerStyle={{ padding: 20 }}
                     />
                 </View>

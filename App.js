@@ -3,10 +3,17 @@ import React, { Component } from 'react';
 import firebase from 'react-native-firebase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppNavigation from './pages/AppNavigation';
+import { I18nManager } from 'react-native';
 
 
 export default class App extends Component {
-
+  constructor(props) {
+    super(props);
+    I18nManager.forceRTL(true);
+    this.state = {
+      isLoaded: false
+    }
+  }
   getToken = async () => {
     let fcmToken = await AsyncStorage.getItem('@Zadak:fcmToken');
     console.log('fcm', fcmToken)
@@ -59,6 +66,7 @@ export default class App extends Component {
     firebase.notifications().android.createChannel(channel);
     this.checkPermission();
     this.createNotificationListeners();
+
   }
 
   componentWillUnmount() {

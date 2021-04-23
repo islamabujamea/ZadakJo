@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StatusBar, View, Image, Dimensions } from 'react-native';
+import { Dimensions, I18nManager } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import RNRestart from 'react-native-restart';
-import { blue } from '../assets/colors/index.js';
 export const { width, height } = Dimensions.get('window');
+import firebase from 'react-native-firebase';
+import AnimatedSplash from "react-native-animated-splash-screen";
 
 
 var config = require('./Config.js');
@@ -11,24 +11,29 @@ var config = require('./Config.js');
 export default class SplashScreen extends Component {
   constructor(props) {
     super(props);
+    I18nManager.forceRTL(true);
     this.state = {
+      isLoaded: false
     }
   }
   async UNSAFE_componentWillMount() {
     let fcmToken = await AsyncStorage.getItem('@Zadak:fcmToken');
-    console.log('fcm splash', fcmToken)
     if (fcmToken == null) {
-      RNRestart.Restart();
+      fcmToken = await firebase.messaging().getToken();
+      if (fcmToken) {
+        await AsyncStorage.setItem('@Zadak:fcmToken', fcmToken);
+      }
     }
     this.loginInterval = setInterval(() => {
       this.renderLoading();
+      this.setState({ isLoaded: !this.state.isLoaded })
     }, 1000);
   }
 
   async renderLoading() {
     const userId = await AsyncStorage.getItem('@Zadak:userId');
     if (userId == null) {
-      redirectID = 'Login';
+      redirectID = 'Slider';
     } else {
       redirectID = 'Home';
     }
@@ -39,11 +44,14 @@ export default class SplashScreen extends Component {
 
   render() {
     return (
-      <View>
-        <StatusBar hidden />
-        <Image source={require('../images/splash.png')} style={{ height: height, width: width }} />
-        <Image source={require('../images/splash-logo.png')} style={{ position: 'absolute', alignSelf: 'center', marginVertical: width * 0.4 }} />
-      </View>
+
+      <AnimatedSplash
+        translucent={false}
+        isLoaded={this.state.isLoaded}
+        logoImage={require("../images/logo.png")}
+        imageBackgroundSource={require('../images/splash.png')}
+        logoHeight={150}
+        logoWidth={150} />
     );
   }
 }

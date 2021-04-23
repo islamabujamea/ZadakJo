@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { StatusBar, ScrollView, TouchableOpacity, View, Platform, Image, Dimensions, Text } from 'react-native';
-import { Icon } from 'native-base';
 import { IndicatorViewPager, PagerDotIndicator, } from 'react-native-best-viewpager';
-import { gray, white, orangeDark, orangeLight } from '../assets/colors';
-import LinearGradient from 'react-native-linear-gradient';
+import { gray, white, blue } from '../assets/colors';
 
 export const { width, height } = Dimensions.get('window');
 
@@ -64,24 +62,12 @@ export default class Slider extends Component {
                     {list}
 
                 </IndicatorViewPager>
-                <Text style={styles.loginInput}>{"Lorem Ipsum is simply"}</Text>
-                <Text style={[styles.loginInput, { color: gray }]}>{"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has"}</Text>
+                <Text style={[styles.loginInput, { textAlign: 'center', width: width * 0.9, alignSelf: 'center', padding: 10 }]}>{"تطبيق زادك "}</Text>
+                <Text style={[styles.loginInput, { color: gray, textAlign: 'center', width: width * 0.9, alignSelf: 'center', padding: 5 }]}>{"تطبيق زادك لجميع انواع المأكولات ، رفيقك الدائم في المطبخ "}</Text>
                 <View style={styles.sliderTxt2}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-                        <Text style={[styles.loginInput, { color: gray }]}>{strings.skip}</Text>
+                        <Text style={[styles.loginInput, { color: blue, textAlign: 'right', width: width * 0.9, padding: 20, alignSelf: 'center' }]}>{strings.skip}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-                        <LinearGradient
-                            colors={[orangeDark, orangeLight]}
-                            start={{ x: 1, y: 0 }} end={{ x: 0, y: 1 }}
-                            style={{ width: width * 0.3, borderRadius: 25 }}
-                        >
-                            <Text style={styles.sliderTxt}>
-                                {strings.Next}
-                            </Text>
-                        </LinearGradient>
-                    </TouchableOpacity>
-
                 </View>
             </ScrollView>
         );
