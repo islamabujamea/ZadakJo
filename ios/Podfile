@@ -3,6 +3,9 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 target 'Zadak' do
   # Pods for Zadak
+  pod 'Firebase/Messaging', '~> 6.2.0' 
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"

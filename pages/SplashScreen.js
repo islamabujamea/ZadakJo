@@ -11,6 +11,7 @@ var config = require('./Config.js');
 export default class SplashScreen extends Component {
   constructor(props) {
     super(props);
+    I18nManager.allowRTL(true);
     I18nManager.forceRTL(true);
     this.state = {
       isLoaded: false

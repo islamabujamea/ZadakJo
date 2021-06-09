@@ -50,7 +50,8 @@ export default class MainStyle extends Component {
         fontSize: 14,
         fontFamily: BoldFont,
         textAlign: 'right',
-        width: width * 0.7
+        width: width * 0.7,
+        padding: Platform.OS = 'ios' ? 10 : 0
       },
       input: {
         height: 50,
